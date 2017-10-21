@@ -1,0 +1,5 @@
+What: I took an apple and put it on people's faces in pictures.
+
+How: I scaled each image so that they would fit in the display. I found the haar features in each image and found the coordinates for the face. I created a mask for the apple image by inversing the apple twice so that the black would be taken out by the mask. I used the blit function to put the apple on the face.
+
+Why: This type of technology can be used in facial recognition or picture editing software. In this case, it's used to automatically find the face and put another image over it so that the face isn't recognisable. 

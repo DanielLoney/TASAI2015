@@ -1,0 +1,4 @@
+#BlueJ class context
+comment0.params=A\ B\ money
+comment0.target=Connect(bestfirst.Station,\ bestfirst.Station,\ int)
+numComments=1

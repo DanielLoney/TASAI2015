@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=
+comment0.target=CGraphNode()
+comment0.text=\r\n\ Default\ constructor\r\n
+comment1.params=rhs
+comment1.target=CGraphNode(java.lang.String)
+comment1.text=\r\n\ Constructor\ with\ one\ parameter\ (data)\r\n\ \r\n
+numComments=2

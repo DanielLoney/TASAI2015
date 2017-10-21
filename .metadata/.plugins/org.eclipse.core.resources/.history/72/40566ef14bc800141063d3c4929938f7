@@ -1,0 +1,149 @@
+package myClasses;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import javax.swing.JOptionPane;
+
+import graphicsClasses.StdDraw;
+import java.util.Random;
+public class MoonSpace {
+	String s = JOptionPane.showInputDialog("Enter seperation value (Integer).");
+	int iterations = 0;
+	int seperation = Integer.parseInt(s);
+	int width = 6;
+	int radius = 10;
+	int length = 30;
+	int height = 30;
+	double points[][] = new double[2000][3];
+	double weights[] = new double[3];
+	double testpoints[][] = new double[2000][3];
+	MoonSpace(){
+		initialise();
+	}
+	public void initialise(){
+		StdDraw.setXscale (-length, length);
+	    StdDraw.setYscale (-height, height);
+	    StdDraw.line(-length, 0, length, 0);
+	    StdDraw.line(0, -height, 0, length);
+	    for(int k = 0; k<1000; k++){
+	    	double xc=100;
+	    	double yc=100;
+	    	while(!((Math.pow(xc-0, 2)+Math.pow(yc-0, 2)<Math.pow(radius+width, 2))&&(Math.pow(xc-0, 2)+Math.pow(yc-0, 2)>Math.pow(radius, 2))&&yc>0)){
+	    		xc = (Math.random()*(width*radius*2)-(radius+width));
+	    		yc = (Math.random()*(width*radius*2)-(radius+width));
+	    	}
+	    	double temp[] = {xc,yc,1};
+	    	points[k] = temp;
+	    }
+	    for(int k = 1000; k<2000; k++){
+	    	double xc=100;
+	    	double yc=100;
+	    	while(!((Math.pow(xc-(width/2+radius), 2)+Math.pow(yc, 2)<Math.pow(radius+width, 2))&&(Math.pow(xc-(width/2+radius), 2)+Math.pow(yc, 2)>Math.pow(radius, 2))&&yc<0)){
+	    		xc = (Math.random()*(width*radius*2)-(width/2));
+	    		yc = (Math.random()*(width*radius*2)-(radius+width));
+	    	}
+	    	double temp[] = {xc,yc,0};
+	    	points[k] = temp;
+	    }
+	    learnRegion();
+	    for(int k = 0; k<1000; k++){
+	    	double xc=100;
+	    	double yc=100;
+	    	while(!((Math.pow(xc-0, 2)+Math.pow(yc-0, 2)<Math.pow(radius+width, 2))&&(Math.pow(xc-0, 2)+Math.pow(yc-0, 2)>Math.pow(radius, 2))&&yc>0)){
+	    		xc = (Math.random()*(width*radius*2)-(radius+width));
+	    		yc = (Math.random()*(width*radius*2)-(radius+width));
+	    	}
+	    	double temp[] = {xc,yc,-1};
+	    	testpoints[k] = temp;
+	    }
+	    for(int k = 1000; k<2000; k++){
+	    	double xc=100;
+	    	double yc=100;
+	    	while(!((Math.pow(xc-(width/2+radius), 2)+Math.pow(yc-(-seperation), 2)<Math.pow(radius+width, 2))&&(Math.pow(xc-(width/2+radius), 2)+Math.pow(yc-(-seperation), 2)>Math.pow(radius, 2))&&yc<-seperation)){
+	    		xc = (Math.random()*(width*radius*2)-(width/2));
+	    		yc = (Math.random()*(width*radius*2)-(radius+width)-seperation);
+	    	}
+	    	double temp[] = {xc,yc,-1};
+	    	testpoints[k] = temp;
+	    }
+	    shuffleArray(testpoints);
+	    StdDraw.setPenRadius(0.009);
+	    for(int k = 0; k<2000; k++){
+	    	if(weights[2]*-1 + weights[0]*testpoints[k][0]+ weights[1]*testpoints[k][1]>0){
+	    		StdDraw.setPenColor(StdDraw.BOOK_BLUE);
+	    	}
+	    	StdDraw.point(points[k][0], points[k][1]);
+	    	StdDraw.setPenColor(StdDraw.BLACK);
+	    }
+	    JOptionPane.showMessageDialog(null, "Weights: "+ Arrays.toString(weights));
+	}
+	void printPoints(double[][] d){
+		
+	}
+	static void shuffleArray(double[][] ar)
+	  {
+	    Random rnd = new Random();
+	    for (int i = ar.length - 1; i > 0; i--)
+	    {
+	      int index = rnd.nextInt(i + 1);
+	      // Simple swap
+	      double[] a = ar[index];
+	      ar[index] = ar[i];
+	      ar[i] = a;
+	    }
+	  }
+	public void learnRegion(){
+		for(int k = 1000; k<2000; k++){
+			if(points[k][1]>0){
+				points[k][2]=1;
+			}
+		}
+		shuffleArray(points);
+		double target[][] = points;
+		double learningrate = 0.2;
+		double[] weightsa = {0.0,0.0,0.0};
+		double threshinput = -1.0;
+		while(test(target, weightsa)!=true){
+			for(int k = 0; k<target.length; k++){
+				while(1==1){
+					int output;
+					if(weightsa[2]*threshinput + weightsa[0]*target[k][0]+ weightsa[1]*target[k][1]>0){
+						output = 1;
+					}
+					else{
+						output = 0;
+					}
+					if(output == target[k][2]){
+						break;
+					}
+					for(int i = 0; i<2; i++){
+						weightsa[i] = weightsa[i] + learningrate*(target[k][2]-output)*target[k][i];
+					}
+					
+					double temp =  weightsa[2] + learningrate*(target[k][2]-output)*threshinput;
+					weightsa[2] = temp;
+					
+				}
+			}
+			iterations++;
+		}
+		weights = new double[3];
+		weights[0] = weightsa[0];
+		weights[1] = weightsa[1];
+		weights[2] = weightsa[2];
+	}
+	static boolean test(double[][] t, double[] w)
+	{
+		for(int k = 0; k<t.length; k++){
+			int temp = 0;
+			if(w[2]*-1 + w[0]*t[k][0]+ w[1]*t[k][1]>0){
+				temp = 1;
+			}
+			if(temp!= t[k][2]){
+				return false;
+			}
+		}
+		return true;
+	}
+}

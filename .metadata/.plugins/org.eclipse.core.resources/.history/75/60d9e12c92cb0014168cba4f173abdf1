@@ -1,0 +1,51 @@
+package classes;
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Insets;
+
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
+import graphicsClasses.StdDraw;
+import static classes.NumberArrays.getNumber;
+
+public class Grid extends JPanel {
+
+	private int number;
+	private int[][] grid = new int[5][7];
+	private float width, height;
+	private float swidth, sheight;
+	
+	
+	public void initialise(){
+		
+	    
+	}
+	
+	private void draw(Graphics g){
+		Dimension size = getSize();
+		Insets insets = getInsets();
+		swidth = width/5- insets.left - insets.right;;
+		sheight = height/7- insets.top - insets.bottom;
+		for(int k = 0; k<grid.length; k++){
+			for(int i = 0; i<grid[k].length; i++){
+				if(grid[k][i]==1){
+					g.setColor(Color.BLACK);
+				}else{
+					g.setColor(Color.WHITE);
+				}
+				g.fillRect(100*i, 100*k, 100, 100);
+			}
+		}
+	}
+	
+	@Override
+	public void paintComponent(Graphics g){
+		super.paintComponent(g);
+		draw(g);
+	}
+	
+	
+}

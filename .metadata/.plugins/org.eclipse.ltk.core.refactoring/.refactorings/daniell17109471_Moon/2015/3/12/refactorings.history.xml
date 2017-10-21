@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy package &apos;graphicsClasses&apos; to &apos;daniell17109471_35Perceptron/src&apos;&#x0D;&#x0A;- Original project: &apos;daniell17109471_Moon&apos;&#x0D;&#x0A;- Destination element: &apos;daniell17109471_35Perceptron/src&apos;&#x0D;&#x0A;- Original element: &apos;daniell17109471_Moon/src/graphicsClasses&apos;" description="Copy package" destination="=daniell17109471_35Perceptron/src" element1="/src&lt;graphicsClasses" flags="589830" fragments="1" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyPackages" stamp="1426464065151" version="1.0"/>
+</session>

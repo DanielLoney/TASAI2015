@@ -1,0 +1,12 @@
+package classes;
+
+public class Runner {
+
+	Runner(){
+		
+	}
+	public static void main(String[] args) {
+		new Grid();
+	}
+
+}

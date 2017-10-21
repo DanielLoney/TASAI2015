@@ -1,0 +1,13 @@
+package classes;
+
+import java.awt.Graphics;
+
+public class Test {
+
+	Test(){
+		Graphics.drawLine(20, 100, 120, 100);
+	}
+	public static void main(String[] args) {
+		new Test();
+	}
+}

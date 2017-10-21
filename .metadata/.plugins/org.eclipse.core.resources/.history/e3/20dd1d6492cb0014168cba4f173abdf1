@@ -1,0 +1,54 @@
+package classes;
+
+import static classes.NumberArrays.getNumber;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+
+public class Runner extends JFrame {
+
+	int width=500, height=700;
+	private int number;
+	
+    public Runner() {
+
+        initUI();
+    }
+
+    private void initUI() {
+        
+        setTitle("Points");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        Grid g = new Grid();
+        add(g);
+
+        setSize(width, height);
+        setLocationRelativeTo(null);
+        
+        String s = JOptionPane.showInputDialog("Enter testing integer(0-9).");
+		if(s==null){
+			JOptionPane.showMessageDialog(null, "No integer given.");
+			System.exit(0);
+		}
+		number = Integer.parseInt(s);
+		if(number>9||number<0){
+			JOptionPane.showMessageDialog(null, "Invalid integer.");
+			System.exit(0);
+		}
+		g.setGrid(getNumber(number)); = getNumber(number);
+    }
+
+    public static void main(String[] args) {
+
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+
+                Runner ps = new Runner();
+                ps.setVisible(true);
+            }
+        });
+    }
+}

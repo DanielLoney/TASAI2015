@@ -1,0 +1,36 @@
+package classes;
+
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
+import graphicsClasses.StdDraw;
+import static classes.NumberArrays.getNumber;
+
+public class Grid extends JPanel {
+
+	int scale = 100;
+	private int number;
+	private int[][] grid = new int[5][7];
+	
+	Grid(){
+		
+	}
+	
+	public void initialise(){
+		String s = JOptionPane.showInputDialog("Enter testing integer(0-9).");
+		if(s==null){
+			JOptionPane.showMessageDialog(null, "No integer given.");
+			System.exit(0);
+		}
+		number = Integer.parseInt(s);
+		if(number>9||number<0){
+			JOptionPane.showMessageDialog(null, "Invalid integer.");
+			System.exit(0);
+		}
+		setVisible(true);
+	    setFocusable(true);
+	    
+	}
+	
+	
+}

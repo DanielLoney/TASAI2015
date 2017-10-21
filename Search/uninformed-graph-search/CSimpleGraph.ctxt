@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.params=node
+comment0.target=void\ setRootNode(CGraphNode)
+comment1.params=
+comment1.target=CGraphNode\ getRootNode()
+comment2.params=a\ b
+comment2.target=void\ connectNodes(CGraphNode,\ CGraphNode)
+comment3.params=
+comment3.target=void\ createGraph()
+comment3.text=\r\n\ \ \ method\ to\ create\ all\ the\ nodes\ as\ show\ in\ fig\ \r\n
+comment4.params=
+comment4.target=CSimpleGraph()
+comment5.params=
+comment5.target=void\ bfs()
+comment6.params=node
+comment6.target=void\ bfs(CGraphNode)
+comment7.params=
+comment7.target=void\ dfs()
+comment8.params=node
+comment8.target=void\ dfs(CGraphNode)
+numComments=9
